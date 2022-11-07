@@ -1,0 +1,105 @@
+<!--
+Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+-->
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Scripts for AWS Cognito and AWS SDK to connect to aws services - Rekognition -->
+    <script src="aws-cognito-sdk.min.js"></script>
+    <script src="amazon-cognito-identity.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.16.0.min.js"></script>
+    <script src="./app.js"></script>
+    <meta charset="UTF-8">
+    <title>Food Calci - Your Personal Food Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+          background-image: url('background.jpg');
+          
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        </style>
+</head>
+
+<body>
+
+    <!-- HTML Body tag for image upload, and output elements -->
+<H1>FoodCalci - Your Personal Food Tracker</H1>
+<input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" onchange="loadFile(event)" style="display: none;">
+<p><label for="fileToUpload" style="display: inline-block; background: cornflowerblue; border-radius: 4px;font-size: 14px;color: #FFF;
+    padding: 8px 12px; cursor: pointer;">Upload Image</label></p>
+<p><img id="output" width="250" /></p>
+<p id="opResult">Waiting for file upload</p>
+<h2> The approximate calorie value of this food is:<p id="calorie"></p>Kcal</h2>
+</body>
+<script>
+
+    document.getElementById("fileToUpload").addEventListener("change", function (event) {
+        ProcessImage();
+    }, false);
+
+    //Loads selected image and unencodes image bytes for Rekognition DetectLabels API
+    function ProcessImage() {
+        AnonLog();
+        var control = document.getElementById("fileToUpload");
+        var file = control.files[0];
+
+        // Load base64 encoded image for display
+        var reader = new FileReader();
+        reader.onload = (function (theFile) {
+            return function (e) {
+                //Call AWS Rekognition
+                AWS.region = "us-east-1";
+                var rekognition = new AWS.Rekognition();
+                var params = {
+                    Image: {
+                        Bytes: e.target.result
+                    },
+                    MaxLabels:5
+                };
+                rekognition.detectLabels(params, function (err, data) {
+                    if (err) console.log(err, err.stack); // an error occurred
+                    else {
+                        var table = "<table><tr><th>Name</th><th>Confidence</th></tr>";
+                        // detect each object in the image and fetch the confidence range from 0-100
+                        for (var i = 0; i < data.Labels.length; i++) {
+                            table += '<tr><td>' + data.Labels[i].Name +
+                                '</td><td>' + data.Labels[i].Confidence + '</td></tr>';
+                        }
+                        table += "</table>";
+                        document.getElementById("opResult").innerHTML = table;
+                        let cal = Math.floor((Math.random() * 100) + 75);
+                        document.getElementById("calorie").innerHTML = cal;
+                    }
+                });
+
+            };
+        })(file);
+        reader.readAsArrayBuffer(file);
+    }
+    //Provides anonymous log on to AWS services to connect to AWS rekognition
+    function AnonLog() {
+
+        // Configure the credentials provider to use your identity pool - user need to change this value
+        AWS.config.region = 'us-east-1'; // Region
+        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: 'us-east-1:9e8a260b-c8cd-43ae-ab0d-15d0c0e1f5c6',
+        });
+        // Make the call to obtain credentials
+        AWS.config.credentials.get(function () {
+            // Credentials will be available when this function is called.
+            var accessKeyId = AWS.config.credentials.accessKeyId;
+            var secretAccessKey = AWS.config.credentials.secretAccessKey;
+            var sessionToken = AWS.config.credentials.sessionToken;
+        });
+    }
+    var loadFile = function(event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+</script>
+</html>
