@@ -9,5 +9,3 @@ To Run and test the webapp proof of concept
 - Once uploaded within few seconds, it will hit the aws rekognition service and then returns the response of image classification along with the confidence range from 0-100 and also the approximate calorie value.
 
 - use git clone to clone this repo and make modiciations to play around this webapp and use this for other rekognition service like celebrity identificaiton, PPE kit identification, and exam proctoring etc.
-
-
