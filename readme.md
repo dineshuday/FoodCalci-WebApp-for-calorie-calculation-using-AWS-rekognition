@@ -4,10 +4,10 @@ This project is proof of concept web application that is compatible in all devic
 The web app is already deployed on to the aws cloud.
 
 To Run and test the webapp
-Visit this URL in any device : https://dev.d32zqi8gqqbshs.amplifyapp.com
-Upload the images in the sample-images folder or any local images from your device.
-Once uploaded within few seconds, it will hit the aws rekognition service and then returns the response of image classification along with the confidence range from 0-100 also the approximate calorie value.
+- Visit this URL in any device : https://dev.d32zqi8gqqbshs.amplifyapp.com
+- Upload the images in the sample-images folder or any local images from your device.
+- Once uploaded within few seconds, it will hit the aws rekognition service and then returns the response of image classification along with the confidence range from 0-100 also the approximate calorie value.
 
-use git clone to clone this repo and make modiciations to play around this webapp and use this for other rekognition service like celebrity identificaiton, PPE kit identification, and exam proctoring etc.
+- use git clone to clone this repo and make modiciations to play around this webapp and use this for other rekognition service like celebrity identificaiton, PPE kit identification, and exam proctoring etc.
 
 
