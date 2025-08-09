@@ -1,11 +1,52 @@
-FoodCalci - Your personal food tracker
+# FoodCalci - Your Personal Food Tracker
 
-This project is proof of concept web application that is compatible in all devices, used to upload local images stored in a pc or smartphone, and once uploaded its hits the aws rekognition service for image classification and then calorie calculation.
-The web app is already deployed on to the aws cloud.
+FoodCalci is a proof-of-concept web application compatible across all devices (PC, smartphones). It allows users to upload local images of food, then uses **AWS Rekognition** to classify the image and estimate the calorie content.
 
-To Run and test the webapp proof of concept
-- Visit this URL in any device : https://dev.d32zqi8gqqbshs.amplifyapp.com
-- Upload the image from the sample-images folder or any local images from your device.
-- Once uploaded within few seconds, it will hit the aws rekognition service and then returns the response of image classification along with the confidence range from 0-100 and also the approximate calorie value.
+The app is deployed on AWS and ready to use.
 
-- use git clone to clone this repo and make modifications to play around this webapp and use this for other rekognition service like celebrity identifications, PPE kit identification, and exam proctoring etc.
+---
+
+## Live Demo
+
+Try the web app on any device here:  
+[https://dev.d32zqi8gqqbshs.amplifyapp.com](https://dev.d32zqi8gqqbshs.amplifyapp.com)
+
+---
+
+## How to Use
+
+1. Upload an image from your device or use sample images provided in the `sample-images` folder.
+2. The app sends the image to AWS Rekognition for classification.
+3. Within seconds, the app displays:
+   - Image classification results with confidence score (0-100)
+   - Approximate calorie estimation based on classification
+
+---
+
+## Getting Started
+
+To run or customize this web app:
+
+```bash
+git clone https://github.com/dineshuday/FoodCalci-WebApp-for-calorie-calculation-using-AWS-rekognition.git
+````
+
+Feel free to modify and extend the app for other AWS Rekognition use cases like:
+
+* Celebrity identification
+* PPE kit detection
+* Exam proctoring
+
+---
+
+## Technologies Used
+
+* AWS Rekognition (Image classification)
+* AWS Amplify (Hosting)
+* JavaScript (frontend)
+
+---
+
+If you have any questions or want to contribute, please open an issue or a pull request.
+
+---
