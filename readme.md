@@ -1,10 +1,14 @@
-Here’s your **updated `README.md`** based on the final version of your `index.html`, now integrated with the USDA API:
+
 
 ---
 
 ## 🥗 FoodCalci - Your Personal Food Tracker
 
 **FoodCalci** is a lightweight web app that uses **AI image recognition** to detect foods from uploaded images and estimate their **calorie values** by integrating with the **USDA FoodData Central API**.
+
+Try out **FoodCalci** live:
+
+👉 [https://staging.d282j2d0ipgah1.amplifyapp.com/](https://staging.d282j2d0ipgah1.amplifyapp.com/)
 
 > Upload a photo of your food — get instant calorie estimates in your browser.
 
